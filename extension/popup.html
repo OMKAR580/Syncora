@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Syncora Watch Party</title>
+  <style>
+    :root {
+      --bg: #09090b;
+      --card: #121216;
+      --border: rgba(239, 68, 68, 0.3);
+      --primary: #ef4444;
+      --primary-hover: #dc2626;
+      --primary-glow: rgba(239, 68, 68, 0.4);
+      --text: #f4f4f5;
+      --text-muted: #a1a1aa;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      width: 340px;
+      background: var(--bg);
+      color: var(--text);
+      padding: 16px;
+      user-select: none;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 18px;
+      font-weight: 900;
+      letter-spacing: 0.5px;
+    }
+
+    .brand span {
+      color: var(--primary);
+      text-shadow: 0 0 10px var(--primary-glow);
+    }
+
+    .badge-guest {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text-muted);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 4px;
+      border-radius: 8px;
+      margin-bottom: 14px;
+    }
+
+    .tab-btn {
+      flex: 1;
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      padding: 6px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .tab-btn.active {
+      background: var(--primary);
+      color: #ffffff;
+      box-shadow: 0 0 10px var(--primary-glow);
+    }
+
+    .form-group {
+      margin-bottom: 12px;
+    }
+
+    label {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    input, select {
+      width: 100%;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 12px;
+      color: #ffffff;
+      font-size: 13px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 8px var(--primary-glow);
+    }
+
+    .btn {
+      width: 100%;
+      background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+      color: #ffffff;
+      border: none;
+      border-radius: 8px;
+      padding: 10px;
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 0 14px var(--primary-glow);
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 0 20px var(--primary);
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    .info-box {
+      background: rgba(239, 68, 68, 0.08);
+      border: 1px dashed var(--primary);
+      border-radius: 8px;
+      padding: 10px;
+      font-size: 11px;
+      color: #fca5a5;
+      margin-bottom: 12px;
+      line-height: 1.4;
+    }
+
+    .share-result {
+      margin-top: 12px;
+      background: rgba(34, 197, 94, 0.1);
+      border: 1px solid rgba(34, 197, 94, 0.3);
+      border-radius: 8px;
+      padding: 10px;
+      display: none;
+    }
+
+    .share-result p {
+      font-size: 11px;
+      color: #4ade80;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .share-link-box {
+      display: flex;
+      gap: 6px;
+    }
+
+    .copy-btn {
+      background: #22c55e;
+      color: #000;
+      border: none;
+      border-radius: 6px;
+      padding: 0 10px;
+      font-weight: 800;
+      font-size: 11px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="brand">🍿 <span>Syncora</span></div>
+    <div id="user-badge" class="badge-guest">Guest User</div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab-btn active" data-target="create-tab">Create Party</button>
+    <button class="tab-btn" data-target="join-tab">Join Party</button>
+  </div>
+
+  <!-- Create Tab -->
+  <div id="create-tab" class="tab-content active">
+    <div class="info-box">
+      🎬 <strong>Universal Sync</strong>: Open Netmirror, Netfree, Netflix or YouTube, then click Create below!
+    </div>
+
+    <div class="form-group">
+      <label>Target Video Page URL</label>
+      <input type="text" id="target-url" placeholder="https://netmirror.app/watch/..." />
+    </div>
+
+    <div class="form-group">
+      <label>Room Passcode (Optional)</label>
+      <input type="password" id="create-password" placeholder="Leave blank for public room" />
+    </div>
+
+    <button id="btn-create" class="btn">🚀 Create Watch Party</button>
+
+    <div id="create-share-result" class="share-result">
+      <p>✅ Watch Party Created!</p>
+      <div class="share-link-box">
+        <input type="text" id="share-link-input" readonly />
+        <button id="btn-copy-link" class="copy-btn">Copy Link</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Join Tab -->
+  <div id="join-tab" class="tab-content">
+    <div class="form-group">
+      <label>Room ID (e.g. PARTY-8921)</label>
+      <input type="text" id="join-room-id" placeholder="PARTY-XXXX" style="text-transform: uppercase;" />
+    </div>
+
+    <div class="form-group">
+      <label>Passcode (If required)</label>
+      <input type="password" id="join-password" placeholder="Enter room password" />
+    </div>
+
+    <button id="btn-join" class="btn">🔑 Join Party Now</button>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

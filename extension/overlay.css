@@ -1,0 +1,245 @@
+/* Syncora Energetic Black & Crimson Red Design Tokens */
+:host, .syncora-theme {
+  --syncora-bg: #09090b;
+  --syncora-card: rgba(18, 18, 22, 0.94);
+  --syncora-border: rgba(239, 68, 68, 0.25);
+  --syncora-primary: #ef4444;
+  --syncora-primary-hover: #dc2626;
+  --syncora-primary-glow: rgba(239, 68, 68, 0.4);
+  --syncora-text: #f4f4f5;
+  --syncora-text-muted: #a1a1aa;
+  --syncora-accent: #ff2e4d;
+  --syncora-radius: 12px;
+  --syncora-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Shadow Root Wrapper */
+#syncora-floating-widget {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  z-index: 2147483647;
+  font-family: var(--syncora-font);
+  color: var(--syncora-text);
+  user-select: none;
+  box-sizing: border-box;
+}
+
+/* Floating Edge Toggle Button */
+.syncora-toggle-btn {
+  background: linear-gradient(135deg, #09090b 0%, #1c090c 100%);
+  border: 1px solid var(--syncora-primary);
+  box-shadow: 0 0 15px var(--syncora-primary-glow);
+  color: #ffffff;
+  padding: 10px 14px;
+  border-radius: 30px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 13px;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.syncora-toggle-btn:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 0 22px var(--syncora-primary);
+}
+
+.syncora-pulse-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #22c55e;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #22c55e;
+  animation: syncoraPulse 1.8s infinite;
+}
+
+@keyframes syncoraPulse {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+  70% { transform: scale(1.2); box-shadow: 0 0 0 8px rgba(34, 197, 94, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+}
+
+/* Sidebar Container */
+.syncora-sidebar {
+  width: 320px;
+  height: 520px;
+  background: var(--syncora-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--syncora-border);
+  border-radius: var(--syncora-radius);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.8), 0 0 20px rgba(239, 68, 68, 0.15);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.syncora-sidebar.hidden {
+  display: none !important;
+}
+
+/* Header */
+.syncora-header {
+  padding: 14px 16px;
+  background: linear-gradient(180deg, rgba(239, 68, 68, 0.12) 0%, rgba(9, 9, 11, 0) 100%);
+  border-bottom: 1px solid var(--syncora-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.syncora-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 800;
+  font-size: 15px;
+  letter-spacing: 0.5px;
+  color: #ffffff;
+}
+
+.syncora-brand span {
+  color: var(--syncora-primary);
+  text-shadow: 0 0 8px var(--syncora-primary);
+}
+
+/* Control Buttons */
+.syncora-btn-icon {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--syncora-text-muted);
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.syncora-btn-icon:hover {
+  background: var(--syncora-primary);
+  color: #fff;
+  border-color: var(--syncora-primary);
+}
+
+/* Status Bar */
+.syncora-status-bar {
+  padding: 8px 16px;
+  background: rgba(0, 0, 0, 0.4);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--syncora-text-muted);
+}
+
+.syncora-badge {
+  background: rgba(239, 68, 68, 0.15);
+  color: var(--syncora-accent);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-weight: 700;
+}
+
+/* Content Area */
+.syncora-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Member List Strip */
+.syncora-members-strip {
+  padding: 8px 12px;
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.syncora-avatar {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 1.5px solid var(--syncora-primary);
+  object-fit: cover;
+}
+
+/* Chat Messages */
+.syncora-chat-messages {
+  flex: 1;
+  padding: 12px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.syncora-msg {
+  font-size: 12px;
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+.syncora-msg.system {
+  text-align: center;
+  color: #888;
+  font-size: 11px;
+  font-style: italic;
+  margin: 4px 0;
+}
+
+.syncora-msg-sender {
+  font-weight: 700;
+  color: var(--syncora-primary);
+  margin-right: 4px;
+}
+
+/* Chat Input Form */
+.syncora-chat-input-form {
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.5);
+  border-top: 1px solid var(--syncora-border);
+  display: flex;
+  gap: 8px;
+}
+
+.syncora-input {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
+  padding: 8px 10px;
+  color: #fff;
+  font-size: 12px;
+  outline: none;
+}
+
+.syncora-input:focus {
+  border-color: var(--syncora-primary);
+  box-shadow: 0 0 8px var(--syncora-primary-glow);
+}
+
+.syncora-send-btn {
+  background: var(--syncora-primary);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.syncora-send-btn:hover {
+  background: var(--syncora-primary-hover);
+}
