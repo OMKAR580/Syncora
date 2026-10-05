@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: syncora-backend-server
+    env: node
+    buildCommand: npm install
+    startCommand: node src/index.js
+    envVars:
+      - key: PORT
+        value: 10000
+      - key: JWT_SECRET
+        generateValue: true

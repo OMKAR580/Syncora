@@ -1,0 +1,17 @@
+{
+  "name": "syncora-monorepo",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Syncora - Universal Watch Party Chrome Extension, Web App & Socket Engine",
+  "private": true,
+  "scripts": {
+    "start:server": "npm --prefix server start",
+    "dev:server": "npm --prefix server run dev",
+    "dev:web": "npm --prefix web run dev",
+    "build:web": "npm --prefix web run build",
+    "test:server": "npm --prefix server test",
+    "test:extension": "node --test extension/test/*.test.js",
+    "test:web": "npm --prefix web test",
+    "test": "npm run test:server && npm run test:extension && npm run test:web"
+  }
+}
