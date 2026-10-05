@@ -64,8 +64,8 @@
 
 /* Sidebar Container */
 .syncora-sidebar {
-  width: 320px;
-  height: 520px;
+  width: 330px;
+  height: 540px;
   background: var(--syncora-card);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
@@ -84,7 +84,7 @@
 
 /* Header */
 .syncora-header {
-  padding: 14px 16px;
+  padding: 12px 14px;
   background: linear-gradient(180deg, rgba(239, 68, 68, 0.12) 0%, rgba(9, 9, 11, 0) 100%);
   border-bottom: 1px solid var(--syncora-border);
   display: flex;
@@ -107,30 +107,42 @@
   text-shadow: 0 0 8px var(--syncora-primary);
 }
 
-/* Control Buttons */
+/* Media Controls Bar */
+.syncora-media-controls {
+  display: flex;
+  gap: 6px;
+}
+
 .syncora-btn-icon {
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.1);
   color: var(--syncora-text-muted);
-  width: 28px;
-  height: 28px;
+  width: 30px;
+  height: 30px;
   border-radius: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: all 0.2s;
+  font-size: 14px;
+}
+
+.syncora-btn-icon.active {
+  background: var(--syncora-primary);
+  color: #ffffff;
+  border-color: var(--syncora-primary);
+  box-shadow: 0 0 10px var(--syncora-primary-glow);
 }
 
 .syncora-btn-icon:hover {
-  background: var(--syncora-primary);
+  background: var(--syncora-primary-hover);
   color: #fff;
-  border-color: var(--syncora-primary);
 }
 
 /* Status Bar */
 .syncora-status-bar {
-  padding: 8px 16px;
+  padding: 8px 14px;
   background: rgba(0, 0, 0, 0.4);
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   display: flex;
@@ -149,29 +161,72 @@
   font-weight: 700;
 }
 
+/* Webcam Floating Container */
+.syncora-cam-grid {
+  padding: 8px;
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  background: rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.syncora-webcam-bubble {
+  width: 90px;
+  height: 65px;
+  background: #000;
+  border-radius: 8px;
+  border: 1.5px solid var(--syncora-primary);
+  overflow: hidden;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.syncora-webcam-bubble video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.syncora-webcam-label {
+  position: absolute;
+  bottom: 2px;
+  left: 4px;
+  font-size: 9px;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 1px 4px;
+  border-radius: 4px;
+  color: #fff;
+  font-weight: 700;
+}
+
+/* Emoji Trigger Bar */
+.syncora-emoji-bar {
+  padding: 6px 10px;
+  display: flex;
+  justify-content: space-between;
+  background: rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.syncora-emoji-btn {
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  transition: transform 0.15s;
+}
+
+.syncora-emoji-btn:hover {
+  transform: scale(1.3);
+}
+
 /* Content Area */
 .syncora-content {
   flex: 1;
   display: flex;
   flex-direction: column;
   overflow: hidden;
-}
-
-/* Member List Strip */
-.syncora-members-strip {
-  padding: 8px 12px;
-  display: flex;
-  gap: 6px;
-  overflow-x: auto;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.syncora-avatar {
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  border: 1.5px solid var(--syncora-primary);
-  object-fit: cover;
 }
 
 /* Chat Messages */
@@ -202,6 +257,22 @@
   font-weight: 700;
   color: var(--syncora-primary);
   margin-right: 4px;
+}
+
+/* Floating Animation Emojis */
+@keyframes syncoraFloatUp {
+  0% { transform: translateY(0) scale(0.6); opacity: 1; }
+  100% { transform: translateY(-300px) scale(1.5); opacity: 0; }
+}
+
+.syncora-floating-emoji {
+  position: fixed;
+  bottom: 40px;
+  right: 100px;
+  font-size: 36px;
+  pointer-events: none;
+  animation: syncoraFloatUp 2.5s ease-out forwards;
+  z-index: 2147483647;
 }
 
 /* Chat Input Form */
